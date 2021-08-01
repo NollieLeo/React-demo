@@ -1,0 +1,29 @@
+.weng {
+  display: flex;
+  &-menu {
+    width: 20%;
+    background: white;
+    border-right: 1px solid #e4e4e4;
+    height: 100vh;
+    > a {
+      width: 100%;
+      height: 50px;
+      display: block;
+      text-align: center;
+      line-height: 50px;
+      font-size: 15px;
+      text-decoration: none;
+      color: #666;
+      font-weight: 500;
+      transition: 0.2s;
+      &:hover,
+      &:focus {
+        background: #60efef82;
+        text-decoration: underline;
+      }
+    }
+  }
+  &-container {
+    flex: 1;
+  }
+}
