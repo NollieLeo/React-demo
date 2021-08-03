@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-function useLatest<T extends any>(current: T){
+function useLatest<T extends any>(current: T) {
   const storeValue = useRef(current);
-  useEffect(()=>{
-    storeValue.current = current
-  })
+
+  useEffect(() => {
+    storeValue.current = current;
+  });
+
   return storeValue;
 }
 
