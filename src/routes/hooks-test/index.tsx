@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useInterval from '@/hooks/useInterval';
 import { Button } from 'antd';
@@ -9,6 +9,7 @@ import useUnmount from '@/hooks/useUnmount';
 import useForceUpdate from '@/hooks/useForceUpdate';
 import useLatest from '@/hooks/useLatest';
 import useUpdateEffect from '@/hooks/useUpdateEffect';
+import useDeepEffect from '@/hooks/useDeepEffect';
 
 const TestInterval = () => {
   const [cancel, start] = useInterval(setMyCount, 1000);
@@ -131,6 +132,30 @@ const TestUpdateEffect = () => {
   );
 };
 
+const TestDeepEffect = () => {
+  const [count, setCount] = useState<any>(0);
+
+  function getData() {
+    return {
+      detail: {
+        name: 'weng',
+      },
+      count,
+    };
+  }
+
+  useDeepEffect(() => {
+    console.log(getData());
+  }, [getData()]);
+
+  return (
+    <Session title="useDeepEffect">
+      <span>Count:{count}</span>
+      <Button onClick={() => setCount(count + 1)}>click</Button>
+    </Session>
+  );
+};
+
 const HooksTest = () => {
   return (
     <div
@@ -145,6 +170,7 @@ const HooksTest = () => {
       <TestForceUpdate />
       <TestPrevious />
       <TestUpdateEffect />
+      <TestDeepEffect />
     </div>
   );
 };
